@@ -108,8 +108,8 @@ function PartInspector({ part }: { part: Part }) {
         <div className="seg">
           {([['translate', Move3d, 'Move (W)'], ['rotate', Rotate3d, 'Rotate (E)'], ['scale', Scale3d, 'Resize (R)']] as const).map(([m, I, t]) => <button key={m} className={mode === m ? 'on' : ''} title={t} onClick={() => setMode(m)} data-testid={`mode-${m}`}><I size={14} /></button>)}
         </div>}>
-        <div className="vec"><span>Position</span>{[0, 1, 2].map((i) => <Num key={i} label={'XYZ'[i]} value={part.position[i]} onChange={(v) => setVec('position', i, v)} unit="cm" />)}</div>
-        <div className="vec"><span>Rotation</span>{[0, 1, 2].map((i) => <Num key={i} label={'XYZ'[i]} step={5} value={part.rotation[i]} onChange={(v) => setVec('rotation', i, v)} unit="°" />)}</div>
+        <div className="vec"><span>Position <i>cm</i></span>{[0, 1, 2].map((i) => <Num key={i} label={'XYZ'[i]} value={part.position[i]} onChange={(v) => setVec('position', i, v)} />)}</div>
+        <div className="vec"><span>Rotation <i>°</i></span>{[0, 1, 2].map((i) => <Num key={i} label={'XYZ'[i]} step={5} value={part.rotation[i]} onChange={(v) => setVec('rotation', i, v)} />)}</div>
         <div className="vec"><span>Scale <button className="icon inline" title={uniform ? 'Uniform scaling on' : 'Uniform scaling off'} onClick={() => setUniform(!uniform)}>{uniform ? <Lock size={11} /> : <Unlock size={11} />}</button></span>{[0, 1, 2].map((i) => <Num key={i} label={'XYZ'[i]} step={0.05} value={part.scale[i]} onChange={(v) => setVec('scale', i, v)} testId={`scale-${i}`} />)}</div>
       </Section>
 
